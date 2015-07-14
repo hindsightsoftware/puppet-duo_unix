@@ -14,10 +14,10 @@ class duo_unix::yum {
   # Map RedHat 5 to CentOS 5 equivalent releases
   if $::operatingsystem == 'Amazon' {
     $releasever = $::operatingsystemmajrelease ? {
-      '2014'  => '6Server',
+      /^(2014|2015)/ => '6Server',
       default => undef,
     }
-    $os = $::operatingsystem
+    $os = 'RedHat'
   } elsif ( $::operatingsystem == 'RedHat' and $::operatingsystemmajrelease == 5 ) {
     $os = 'CentOS'
     $releasever = '$releasever'
